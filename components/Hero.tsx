@@ -423,7 +423,7 @@ export default function Hero() {
         aria-hidden="true"
         style={{
           position: "absolute",
-          right: isMobile ? "auto" : "160px",
+          right: isMobile ? "auto" : "80px",
           bottom: -250,
           zIndex: 4,
           pointerEvents: "none",

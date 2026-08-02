@@ -25,7 +25,7 @@ const COPY = {
     kicker: "QUY TRÌNH LÀM VIỆC",
     titleLine1: "Quy trình",
     titleLine2: "làm việc",
-    script: "Chỉn chu trong từng chi tiết,\ntrọn vẹn trong từng khoảnh khắc.",
+    script: "Chỉnh chu trong từng chi tiết,\ntrọn vẹn trong từng khoảnh khắc.",
   },
   zh: {
     kicker: "合作流程",

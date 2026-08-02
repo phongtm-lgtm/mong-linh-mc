@@ -162,7 +162,7 @@ const COPY = {
     role: "MC & Event Host",
     quote: "Một chương trình thành công không chỉ đúng kịch bản, mà còn đúng cảm xúc.",
     paragraphs: [
-      "Tôi đồng hành cùng doanh nghiệp và đối tác để tạo nên những chương trình được dẫn dắt mạch lạc, chỉn chu và giàu cảm xúc.",
+      "Tôi đồng hành cùng doanh nghiệp và đối tác để tạo nên những chương trình được dẫn dắt mạch lạc, chỉnh chu và giàu cảm xúc.",
       "Với khả năng song ngữ Việt - Trung và kinh nghiệm đa dạng, tôi tự tin kết nối khán giả, truyền tải trọn vẹn thông điệp thương hiệu và nâng tầm giá trị sự kiện.",
     ],
   },
