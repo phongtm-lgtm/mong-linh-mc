@@ -24,7 +24,7 @@ const SERVICES: Service[] = [
       zh: "会议、研讨会、年终盛典、启动仪式。",
     },
     detail: {
-      vi: "Dẫn dắt hội nghị, hội thảo và lễ tổng kết với nhịp chuyên nghiệp, giúp thương hiệu truyền tải thông điệp rõ ràng và chỉn chu.",
+      vi: "Dẫn dắt hội nghị, hội thảo và lễ tổng kết với nhịp chuyên nghiệp, giúp thương hiệu truyền tải thông điệp rõ ràng và chỉnh chu.",
       zh: "以专业稳健的节奏主持会议、研讨会与年终盛典，帮助品牌清晰、严谨地传递讯息。",
     },
     image: "/media/gallery-vietnam-china.jpg",
@@ -196,6 +196,7 @@ export default function Services() {
             tone="dark"
             kicker={copy.kicker}
             title={copy.title}
+            titleFont="sans"
             style={{
               marginBottom: 24,
               animation: "aboutReveal .7s ease forwards",
@@ -259,10 +260,10 @@ export default function Services() {
                   >
                     <span
                       style={{
-                        fontFamily: "'Playfair Display',serif",
+                        fontFamily: "'Be Vietnam Pro',sans-serif",
                         fontSize: isMobile ? 16 : 18,
                         color: isActive ? "#B88E5E" : "rgba(184,142,94,.4)",
-                        fontWeight: 500,
+                        fontWeight: 600,
                         lineHeight: 1,
                       }}
                     >
@@ -281,9 +282,9 @@ export default function Services() {
                     <span style={{ minWidth: 0, display: "flex", flexDirection: "column", gap: 3 }}>
                       <span
                         style={{
-                          fontFamily: "'Playfair Display',serif",
+                          fontFamily: "'Be Vietnam Pro',sans-serif",
                           fontSize: isMobile ? 15 : 16,
-                          fontWeight: 500,
+                          fontWeight: 600,
                           color: isActive ? "#3B2433" : "rgba(59,36,51,.55)",
                           lineHeight: 1.2,
                         }}

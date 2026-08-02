@@ -305,6 +305,43 @@ body {
   transform: scale(1.1);
 }
 
+.ml-social-rail-icon {
+  position: relative;
+  z-index: 1;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: #ffffff;
+  border: none;
+  box-shadow: 0 6px 18px rgba(20, 10, 18, 0.22);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+.ml-social-rail-icon.is-facebook {
+  background: #1877f2;
+}
+.ml-social-rail-icon.is-instagram {
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%);
+}
+.ml-social-rail-icon.is-zalo {
+  background: #0068ff;
+}
+.ml-social-rail-icon.is-email {
+  background: #ea4335;
+}
+.ml-social-rail-icon:hover {
+  transform: translateY(-2px) scale(1.08);
+  filter: brightness(1.06);
+  box-shadow: 0 10px 22px rgba(20, 10, 18, 0.3);
+}
+.ml-social-rail-icon:focus-visible {
+  outline: 2px solid var(--accent-gold);
+  outline-offset: 3px;
+}
+
 .ml-about-social:hover {
   transform: scale(1.08);
   background: var(--text-primary) !important;

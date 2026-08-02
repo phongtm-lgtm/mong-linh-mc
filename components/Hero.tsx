@@ -82,9 +82,8 @@ export default function Hero() {
         justifyContent: "space-between",
       }}
     >
-      {/* HERO BACKGROUND IMAGE */}
       <img
-        src={isMobile ? "/assets/hero-bg-lavender-mobile.png?v=restore1" : "/assets/hero-bg-lavender.webp?v=restore1"}
+        src={isMobile ? "/assets/hero-bg-purple-mobile.png" : "/assets/hero-bg-purple.png"}
         alt=""
         aria-hidden="true"
         style={{

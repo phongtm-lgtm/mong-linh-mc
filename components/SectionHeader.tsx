@@ -9,11 +9,13 @@ type SectionHeaderProps = {
   align?: "left" | "center";
   /** Điểm 1-2 sparkle nhỏ cạnh tiêu đề — dùng tiết chế cho vài section nổi bật */
   sparkle?: boolean;
+  /** Serif mặc định; "sans" cho list/UI nặng chữ */
+  titleFont?: "serif" | "sans";
   style?: CSSProperties;
 };
 
 /**
- * Header chuẩn cho mọi section: kicker uppercase + tiêu đề serif + script subline.
+ * Header chuẩn cho mọi section: kicker uppercase + tiêu đề + script subline.
  * Giữ đúng một scale typography trên toàn trang.
  */
 export default function SectionHeader({
@@ -23,6 +25,7 @@ export default function SectionHeader({
   tone,
   align = "left",
   sparkle = false,
+  titleFont = "serif",
   style,
 }: SectionHeaderProps) {
   return (
@@ -65,8 +68,8 @@ export default function SectionHeader({
       <h2
         style={{
           position: "relative",
-          fontFamily: "'Playfair Display',serif",
-          fontWeight: 500,
+          fontFamily: titleFont === "sans" ? "'Be Vietnam Pro',sans-serif" : "'Playfair Display',serif",
+          fontWeight: titleFont === "sans" ? 600 : 500,
           fontSize: "clamp(34px, 4.2vw, 52px)",
           lineHeight: 1.12,
           letterSpacing: "-0.01em",
