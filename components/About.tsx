@@ -149,22 +149,6 @@ const STAT_ITEMS = [
       </svg>
     ),
   },
-  {
-    id: "experience",
-    value: "6+",
-    label: { vi: "Năm kinh nghiệm", zh: "从业年限" },
-    icon: (
-      <svg width="20" height="20" viewBox="0 0 36 36" fill="none" aria-hidden="true">
-        <path
-          d="M18 5.5l8.5 3.2v8.6c0 5.2-3.5 9.8-8.5 11.2-5-1.4-8.5-6-8.5-11.2V8.7L18 5.5z"
-          stroke="currentColor"
-          strokeWidth="1.35"
-          strokeLinejoin="round"
-        />
-        <path d="M13.5 18.2l3 3 6-6.5" stroke="currentColor" strokeWidth="1.35" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-    ),
-  },
 ];
 
 const PORTRAIT_SRC = "/media/about-mongLinh.jpg";
@@ -175,7 +159,6 @@ const COPY = {
     kicker: "Về Mộng Linh",
     title: "Người giữ nhịp sân khấu",
     badge: { mc: "MC song ngữ", langs: "Vietnamese • Chinese" },
-    since: "Since 2019",
     role: "MC & Event Host",
     quote: "Một chương trình thành công không chỉ đúng kịch bản, mà còn đúng cảm xúc.",
     paragraphs: [
@@ -188,7 +171,6 @@ const COPY = {
     kicker: "关于梦灵",
     title: "掌控全场节奏的主持人",
     badge: { mc: "双语主持人", langs: "越南语 • 中文" },
-    since: "Since 2019",
     role: "MC & Event Host",
     quote: "一场成功的活动，不仅要贴合脚本，更要契合情感。",
     paragraphs: [
@@ -371,23 +353,6 @@ export default function About() {
             </span>
           </div>
 
-          <span
-            style={{
-              position: "absolute",
-              left: isMobile ? 20 : 26,
-              bottom: isMobile ? 16 : 20,
-              zIndex: 2,
-              fontFamily: "'Be Vietnam Pro',sans-serif",
-              fontSize: 10,
-              fontWeight: 500,
-              letterSpacing: ".2em",
-              textTransform: "uppercase",
-              color: "rgba(250,246,248,.62)",
-              pointerEvents: "none",
-            }}
-          >
-            {copy.since}
-          </span>
         </div>
       </div>
 
@@ -481,7 +446,7 @@ export default function About() {
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: isMobile ? "repeat(2, minmax(0, 1fr))" : "repeat(4, minmax(0, 1fr))",
+            gridTemplateColumns: isMobile ? "repeat(2, minmax(0, 1fr))" : "repeat(3, minmax(0, 1fr))",
             gap: isMobile ? 10 : 12,
             width: "100%",
             marginBottom: isMobile ? 26 : 32,

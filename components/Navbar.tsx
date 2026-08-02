@@ -185,8 +185,9 @@ export default function Navbar() {
           <button
             onClick={() => setLang("zh")}
             className={`ml-luxury-lang-btn${!isVi ? " is-active" : ""}`}
+            aria-label="中文"
           >
-            EN
+            中
           </button>
         </div>
 
