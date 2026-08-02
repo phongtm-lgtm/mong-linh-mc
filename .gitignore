@@ -1,0 +1,30 @@
+# dependencies
+node_modules
+
+# next.js
+.next
+out
+build
+
+# env / logs
+*.log
+.env*.local
+.DS_Store
+
+# tooling / IDE
+.claude/
+.idea/
+.thumbnail
+.image-slots.state.json
+tsconfig.tsbuildinfo
+wave-trace-debug.png
+image-slot.js
+support.js
+scripts/
+
+# local design / backup assets (not used by deploy)
+"MC Hero.dc.html"
+assets/backup/
+assets/hero-bg-lavender-v2.png
+assets/hero-bg-purple-mobile.png
+assets/hero-bg-purple.png

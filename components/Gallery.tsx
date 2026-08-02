@@ -207,7 +207,7 @@ function GalleryTile({
   shot: StageShot;
   index: number;
   lang: "vi" | "zh";
-  ui: (typeof UI_LABELS)["vi"];
+  ui: (typeof UI_LABELS)[keyof typeof UI_LABELS];
   isMobile: boolean;
   featured?: boolean;
   priority?: boolean;
