@@ -1,0 +1,625 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   SÁNG DỊU TÍM PHẤN — Blush Lavender Light Palette
+   ============================================================ */
+:root {
+  --bg-primary: #FAF6F8;       /* nền chính - trắng ngà ánh hồng */
+  --bg-secondary: #EFE3EC;     /* nền phụ - hồng phấn nhạt */
+  --bg-dark: #2F1E2C;          /* nền tối - plum sâu, khớp hero mist */
+  --text-primary: #2F1E2C;     /* chữ chính trên nền sáng */
+  --text-secondary: rgba(47, 30, 44, 0.62);
+  --text-on-dark: rgba(250, 246, 248, 0.72);
+  --text-on-dark-strong: #FFF8FB;
+  --accent-cta: #B86B8A;       /* hồng mận dịu — CTA / link */
+  --accent-cta-strong: #9E4F72; /* CTA nhấn */
+  --accent-soft: #A98BBF;      /* lavender phụ */
+  --accent-gold: #C4A46A;      /* champagne gold — brand accent */
+  --surface-card: #FFFFFF;
+
+  /* NAV / DARK-SURFACE TOKENS — cùng họ với palette chính */
+  --nav-ink: #FFF8FB;
+  --nav-muted: rgba(255, 248, 251, 0.62);
+  --nav-glass: rgba(32, 18, 30, 0.78);
+  --nav-border: rgba(255, 248, 251, 0.1);
+  --champagne: #C4A46A;
+  --cta-glow: rgba(158, 79, 114, 0.38);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 72px;
+}
+
+body {
+  margin: 0;
+  background: var(--bg-primary);
+}
+
+/* ============================================================
+   KEYFRAMES
+   ============================================================ */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes equalizerPulse {
+  0% {
+    transform: scaleY(0.4);
+  }
+  100% {
+    transform: scaleY(1.35);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.4);
+  }
+}
+
+@keyframes aboutReveal {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes aboutPortrait {
+  from {
+    opacity: 0;
+    transform: translateX(-16px) scale(1.02);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes signatureIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px) rotate(-2deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) rotate(-4deg);
+  }
+}
+
+/* Thanh tiến trình autoplay của gallery slideshow */
+@keyframes galleryProgress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes marqueeLeft {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marqueeRight {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* Blob mềm phía sau ảnh chân dung Hero — trôi rất chậm, không gây rối mắt */
+@keyframes heroBlobDrift {
+  0% {
+    transform: rotate(0deg) scale(1);
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+  50% {
+    transform: rotate(8deg) scale(1.05);
+    border-radius: 40% 60% 70% 30% / 40% 70% 30% 60%;
+  }
+  100% {
+    transform: rotate(0deg) scale(1);
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+}
+
+/* Sparkle motif quanh tiêu đề — xoay tĩnh rất chậm, không nhấp nháy */
+@keyframes sparkleSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ============================================================
+   IMAGE GRADE — đồng bộ tông màu ảnh toàn trang
+   Áp cho ảnh gallery/services để các ảnh khác nguồn nhìn cùng bộ.
+   ============================================================ */
+.ml-img-grade {
+  filter: saturate(0.95) contrast(1.03) brightness(1.02);
+}
+
+/* Overlay tím phấn nhẹ đặt đè lên ảnh — dùng kèm .ml-img-grade */
+.ml-img-tint {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(135deg, rgba(183, 154, 203, 0.1) 0%, rgba(183, 154, 203, 0.02) 55%, rgba(201, 121, 154, 0.04) 100%);
+  mix-blend-mode: multiply;
+}
+
+/* ============================================================
+   MARQUEE (logo wall)
+   ============================================================ */
+.ml-marquee-viewport {
+  overflow: hidden;
+  width: 100%;
+}
+
+.ml-marquee-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+.ml-marquee-track.is-left {
+  animation: marqueeLeft 28s linear infinite;
+}
+
+.ml-marquee-track.is-right {
+  animation: marqueeRight 32s linear infinite;
+}
+
+.ml-marquee-group {
+  display: flex;
+  align-items: center;
+}
+
+.ml-marquee-group > :not(.ml-marquee-item) {
+  display: contents;
+}
+
+.ml-marquee-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 140px;
+  height: 56px;
+  margin: 0 20px;
+  flex-shrink: 0;
+  opacity: 0.55;
+  transition: opacity 0.25s ease;
+}
+
+.ml-marquee-item:hover {
+  opacity: 1;
+}
+
+/* ============================================================
+   NAVBAR
+   ============================================================ */
+.ml-nav-link:hover {
+  color: var(--accent-cta);
+}
+.ml-nav-link.is-light:hover {
+  color: var(--accent-cta);
+}
+.ml-nav-link:focus-visible {
+  outline: 2px solid var(--accent-cta);
+  outline-offset: 4px;
+}
+.ml-nav-underline {
+  transition: width 0.3s ease;
+}
+.ml-nav-link:hover .ml-nav-underline {
+  width: 100% !important;
+}
+
+.ml-lang-btn:focus-visible {
+  outline: 2px solid var(--accent-cta);
+  outline-offset: 2px;
+}
+
+.ml-book-btn:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.08);
+}
+.ml-book-btn:focus-visible {
+  outline: 2px solid var(--accent-cta);
+  outline-offset: 3px;
+}
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+.ml-cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px -8px var(--cta-glow) !important;
+  filter: brightness(1.05);
+}
+.ml-cta-btn:focus-visible {
+  outline: 2px solid var(--accent-gold);
+  outline-offset: 3px;
+}
+
+.ml-outline-btn:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 248, 251, 0.1) !important;
+  border-color: rgba(255, 248, 251, 0.85) !important;
+  box-shadow: none !important;
+  color: var(--text-on-dark-strong) !important;
+}
+.ml-outline-btn:focus-visible {
+  outline: 2px solid var(--accent-gold);
+  outline-offset: 3px;
+}
+
+.ml-voice-btn:focus-visible {
+  outline: 2px solid var(--text-primary);
+  outline-offset: 2px;
+}
+
+.ml-social-icon:hover {
+  color: var(--accent-cta);
+  transform: scale(1.1);
+}
+
+.ml-about-social:hover {
+  transform: scale(1.08);
+  background: var(--text-primary) !important;
+}
+
+/* ============================================================
+   SERVICES
+   ============================================================ */
+.ml-service-item:hover {
+  background: rgba(183, 154, 203, 0.08) !important;
+}
+.ml-service-item:focus-visible {
+  outline: 2px solid var(--accent-cta);
+  outline-offset: 2px;
+}
+
+.ml-service-nav:hover {
+  transform: translateY(-1px);
+}
+.ml-service-nav:not(.is-filled):hover {
+  border-color: var(--accent-cta) !important;
+  background: rgba(183, 154, 203, 0.1) !important;
+}
+.ml-service-nav.is-filled:hover {
+  filter: brightness(1.1);
+}
+.ml-service-nav:focus-visible {
+  outline: 2px solid var(--accent-cta);
+  outline-offset: 3px;
+}
+
+.ml-detail-link {
+  transition: gap 0.2s ease, color 0.2s ease;
+}
+.ml-detail-link:hover {
+  gap: 12px;
+}
+.ml-detail-link:focus-visible {
+  outline: 2px solid var(--accent-cta);
+  outline-offset: 4px;
+}
+
+/* ============================================================
+   SHOWREEL PLAYER
+   ============================================================ */
+.ml-showreel-cover:hover .ml-showreel-bigplay {
+  transform: scale(1.07);
+}
+.ml-showreel-bigplay:focus-visible {
+  outline: 2px solid var(--text-primary);
+  outline-offset: 4px;
+}
+
+.ml-showreel-play:hover {
+  transform: scale(1.07);
+}
+.ml-showreel-play:active {
+  transform: scale(0.97);
+}
+.ml-showreel-play:focus-visible {
+  outline: 2px solid var(--text-primary);
+  outline-offset: 3px;
+  opacity: 1 !important;
+}
+/* Đang phát thì nút mờ đi — rê chuột vào khung là hiện lại để bấm dừng. */
+.ml-showreel-frame:hover .ml-showreel-play {
+  opacity: 1 !important;
+}
+
+.ml-showreel-track > div {
+  transition: height 0.25s cubic-bezier(0.32, 0.72, 0, 1);
+}
+.ml-showreel-track:hover > div,
+.ml-showreel-track:focus-visible > div {
+  height: 5px;
+}
+.ml-showreel-track:focus-visible {
+  outline: 2px solid var(--accent-cta);
+  outline-offset: 6px;
+}
+
+.ml-showreel-thumb {
+  transform: translate(-50%, -50%);
+  transition: opacity 0.2s ease;
+}
+.ml-showreel-track:hover .ml-showreel-thumb,
+.ml-showreel-track:focus-visible .ml-showreel-thumb {
+  opacity: 1;
+}
+
+.ml-showreel-fs:hover {
+  transform: scale(1.12);
+}
+.ml-showreel-fs:focus-visible {
+  outline: 2px solid var(--text-primary);
+  outline-offset: 4px;
+}
+
+/* Toàn màn hình: bỏ khung 16:9, để video vừa trọn màn không bị cắt. */
+.ml-showreel-frame:fullscreen,
+.ml-showreel-frame:-webkit-full-screen {
+  width: 100vw;
+  height: 100vh;
+  aspect-ratio: auto;
+  background: #000;
+}
+.ml-showreel-frame:fullscreen video,
+.ml-showreel-frame:-webkit-full-screen video {
+  object-fit: contain;
+}
+
+/* ============================================================
+   GALLERY
+   ============================================================ */
+.ml-gallery-tile {
+  transition: filter 0.35s ease;
+}
+.ml-gallery-tile:focus-visible {
+  outline: 2px solid var(--accent-cta);
+  outline-offset: 3px;
+}
+.ml-gallery-tile-media {
+  transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.ml-gallery-tile:hover .ml-gallery-tile-media,
+.ml-gallery-tile:focus-visible .ml-gallery-tile-media {
+  transform: scale(1.045);
+}
+.ml-gallery-strip {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(201, 121, 154, 0.45) transparent;
+}
+.ml-gallery-strip::-webkit-scrollbar {
+  height: 4px;
+}
+.ml-gallery-strip::-webkit-scrollbar-thumb {
+  background: rgba(201, 121, 154, 0.45);
+  border-radius: 999px;
+}
+
+.ml-lightbox-btn {
+  opacity: 0.75;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.ml-lightbox-btn:hover {
+  opacity: 1;
+}
+.ml-lightbox-btn:focus-visible {
+  outline: 2px solid var(--accent-cta);
+  outline-offset: 3px;
+}
+.ml-lightbox-btn[aria-label="Đóng"]:hover,
+.ml-lightbox-btn[aria-label="关闭"]:hover {
+  transform: scale(1.08);
+}
+
+/* ============================================================
+   HERO — blob & sparkle motif
+   ============================================================ */
+.ml-hero-blob {
+  animation: heroBlobDrift 26s ease-in-out infinite;
+}
+
+.ml-hero-sparkle {
+  animation: sparkleSpin 16s linear infinite;
+}
+
+/* ============================================================
+   CARD HOVER — shadow màu thay vì shadow xám
+   ============================================================ */
+.ml-card-hover {
+  transition: transform 0.25s ease-out, box-shadow 0.25s ease-out;
+}
+.ml-card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px -8px rgba(183, 154, 203, 0.3);
+}
+
+/* ============================================================
+   FAQ ACCORDION
+   ============================================================ */
+.ml-faq-trigger {
+  transition: color 0.2s ease;
+}
+.ml-faq-trigger:hover {
+  color: var(--accent-cta) !important;
+}
+.ml-faq-trigger:focus-visible {
+  outline: 2px solid var(--accent-cta);
+  outline-offset: 3px;
+}
+
+/* ============================================================
+   NAVBAR — cream text, champagne accent, plum CTA
+   ============================================================ */
+.ml-luxury-nav-link {
+  position: relative;
+  color: var(--nav-muted);
+  text-decoration: none;
+  font-family: "Be Vietnam Pro", sans-serif;
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transition: color 0.25s ease;
+  padding-bottom: 5px;
+}
+.ml-luxury-nav-link:hover,
+.ml-luxury-nav-link.is-active {
+  color: var(--nav-ink);
+}
+.ml-luxury-nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 1.5px;
+  background: var(--accent-gold);
+  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  border-radius: 1px;
+}
+.ml-luxury-nav-link:hover::after,
+.ml-luxury-nav-link.is-active::after {
+  width: 100%;
+}
+
+.ml-luxury-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 38px;
+  padding: 0 22px;
+  border-radius: 999px;
+  background: var(--accent-cta-strong);
+  color: var(--nav-ink);
+  font-family: "Be Vietnam Pro", sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  font-weight: 600;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1px solid rgba(255, 248, 251, 0.12);
+  box-shadow: 0 8px 22px -10px var(--cta-glow);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease, background 0.25s ease;
+  cursor: pointer;
+}
+.ml-luxury-cta-btn:hover {
+  transform: translateY(-2px);
+  background: #8E4668;
+  box-shadow: 0 12px 28px -8px var(--cta-glow);
+  filter: brightness(1.04);
+}
+.ml-luxury-cta-btn:active {
+  transform: translateY(0);
+}
+
+.ml-luxury-lang-capsule {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 248, 251, 0.06);
+  border: 1px solid rgba(255, 248, 251, 0.16);
+  border-radius: 999px;
+  padding: 2px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  height: 34px;
+  box-sizing: border-box;
+}
+
+.ml-luxury-lang-btn {
+  padding: 0 12px;
+  height: 100%;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--nav-muted);
+  font-family: "Be Vietnam Pro", sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  transition: background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+}
+.ml-luxury-lang-btn.is-active {
+  background: rgba(255, 248, 251, 0.14);
+  color: var(--accent-gold);
+  box-shadow: inset 0 0 0 1px rgba(196, 164, 106, 0.35);
+}
+.ml-luxury-lang-btn:hover:not(.is-active) {
+  color: var(--nav-ink);
+}
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *:not(.ml-marquee-track) {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .ml-marquee-track.is-left {
+    animation: marqueeLeft 28s linear infinite !important;
+    animation-duration: 28s !important;
+    animation-iteration-count: infinite !important;
+  }
+
+  .ml-marquee-track.is-right {
+    animation: marqueeRight 32s linear infinite !important;
+    animation-duration: 32s !important;
+    animation-iteration-count: infinite !important;
+  }
+}
